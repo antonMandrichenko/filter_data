@@ -2,14 +2,16 @@ import React from 'react';
 import Item from '../Item';
 import './ListOfItems.css';
 
-const ListOfItems = props => {
+const ListOfItems = ({ filterByTag,
+                       posts,
+                       filterByInput}) => {
   return (
     <div className="col-md-8">
       <ul className='listOfTwoColumns'>
-        {props.filterByTag !== '' && props.filterByTag !== 'all'
-          ? (props.posts.map((item, i) =>
+        {filterByTag !== '' && filterByTag !== 'all'
+          ? (posts.map((item, i) =>
                 item.tags.map((value) =>
-                    (value === props.filterByTag)
+                    (value === filterByTag)
                     ? <Item key={i}
                             title={item.title}
                             tags={item.tags}
@@ -18,16 +20,16 @@ const ListOfItems = props => {
                 )
              )
           )
-          :(props.filterByInput !== ''
-            ? props.posts.map((item, i) => {
-                return item.title.toLowerCase().indexOf(props.filterByInput.toLowerCase()) === 0
+          :(filterByInput !== ''
+            ? posts.map((item, i) =>
+                item.title.toLowerCase().indexOf(filterByInput.toLowerCase()) === 0
                   ? <Item key={i}
                           title={item.title}
                           tags={item.tags}
                   />
                   : null
-              })
-            : props.posts.map((item, i) =>
+              )
+            : posts.map((item, i) =>
                 <Item key={i}
                       title={item.title}
                       tags={item.tags}

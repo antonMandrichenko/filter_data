@@ -4,7 +4,7 @@ import {
   KEY_FROM_INPUT
 } from '../actions';
 
-export function posts(
+export const posts = (
   state = {
     items: {},
     filterMenu: [],
@@ -12,7 +12,7 @@ export function posts(
     filterFromInput: ""
   },
   action
-) {
+) => {
   switch (action.type) {
     case RECEIVE_POSTS:
       const newArr = action.json.results.map((item) => item.tags).flat();
@@ -40,5 +40,5 @@ export function posts(
     default:
       return state
   }
-}
+};
 
