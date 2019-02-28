@@ -1,11 +1,12 @@
 import React from 'react';
 import Input from '../Input';
+import RadioInput from '../RadioInput';
 
 const FilterList = ({ filterMenu,
                       filterByTag,
                       filterByInput,
-                      getItemsByInput,
-                      getItemsByTag}) => {
+                      getItemsByTag,
+                      getItemsByInput}) => {
   return (
     <div className="col-md-4">
       <ul className="filterList">
@@ -21,33 +22,14 @@ const FilterList = ({ filterMenu,
         {filterMenu.map((item, i) =>
             <li key={i} >
               {filterByTag === '' && filterByInput === '' && item === 'all'
-                ? <div className="form-check">
-                    <input className="form-check-input"
-                           type="radio"
-                           name="Radios"
-                           id="filterRadios"
-                           value={item}
-                           onClick={getItemsByTag}
-                           defaultChecked="checked"
-                    />
-                    <label className="form-check-label"
-                           htmlFor="filterRadios">
-                      {item}
-                    </label>
-                  </div>
-                :<div className="form-check">
-                    <input className="form-check-input"
-                           type="radio"
-                           name="Radios"
-                           id="filterRadios"
-                           value={item}
-                           onClick={getItemsByTag}
-                    />
-                    <label className="form-check-label"
-                           htmlFor="filterRadios">
-                      {item}
-                    </label>
-                  </div>
+                ? <RadioInput item={item}
+                              checked
+                              getItemsByTag = {getItemsByTag}
+                />
+
+                :<RadioInput item={item}
+                             getItemsByTag = {getItemsByTag}
+                />
               }
             </li>
         )}

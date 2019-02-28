@@ -1,4 +1,4 @@
-import { fetchPosts, keyTag, keyInput } from '../actions'
+import { fetchPosts, keyTag, keyInput } from '../../actions'
 
 export const mapStateToProps = (state) => ({
   filterMenu: state.posts.filterMenu,
